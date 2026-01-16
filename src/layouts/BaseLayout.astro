@@ -1,0 +1,98 @@
+---
+import '../styles/global.css';
+import BookTabs from '../components/BookTabs.astro';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = "Welcome, Dorothy Louise Pablo",
+  description = "A storybook celebration of Dorothy Louise Pablo's arrival into the world."
+} = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <title>{title}</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/images/favicon.svg" />
+
+    <!-- Open Graph -->
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://dorothypablo.com" />
+
+    <!-- Preload fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  </head>
+  <body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <BookTabs />
+
+    <main id="main-content">
+      <slot />
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <p class="footer-text">
+          Made with love for Dorothy Louise Pablo
+        </p>
+        <p class="footer-note">
+          Born January 15, 2026 at 9:11 PM CT
+        </p>
+      </div>
+    </footer>
+  </body>
+</html>
+
+<style>
+  .skip-link {
+    position: absolute;
+    top: -100%;
+    left: var(--space-md);
+    background: var(--paper);
+    color: var(--ink);
+    padding: var(--space-sm) var(--space-md);
+    border-radius: var(--radius-md);
+    box-shadow: var(--paper-shadow);
+    z-index: 10000;
+    transition: top var(--transition-fast);
+  }
+
+  .skip-link:focus {
+    top: var(--space-md);
+  }
+
+  main {
+    min-height: 100vh;
+  }
+
+  .site-footer {
+    background: var(--bg-alt);
+    padding: var(--space-2xl) var(--space-lg);
+    text-align: center;
+    border-top: 1px solid rgba(74, 63, 53, 0.08);
+  }
+
+  .footer-text {
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: var(--space-xs);
+  }
+
+  .footer-note {
+    font-size: 0.875rem;
+    color: var(--ink-muted);
+  }
+</style>

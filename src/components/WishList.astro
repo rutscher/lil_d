@@ -1,0 +1,80 @@
+---
+interface Wish {
+  text: string;
+  from?: string;
+}
+
+interface Props {
+  wishes: Wish[];
+}
+
+const { wishes } = Astro.props;
+---
+
+<div class="wish-list">
+  {wishes.map((wish) => (
+    <div class="wish-card">
+      <span class="wish-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 3l1.5 4.5L18 9l-4.5 1.5L12 15l-1.5-4.5L6 9l4.5-1.5L12 3z"/>
+        </svg>
+      </span>
+      <p class="wish-text">{wish.text}</p>
+      {wish.from && <span class="wish-from">— {wish.from}</span>}
+    </div>
+  ))}
+</div>
+
+<style>
+  .wish-list {
+    display: grid;
+    gap: var(--space-md);
+  }
+
+  .wish-card {
+    background: linear-gradient(135deg, var(--accent-butter-light) 0%, var(--paper) 100%);
+    border-radius: var(--radius-lg);
+    padding: var(--space-lg);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .wish-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: var(--accent-butter);
+  }
+
+  .wish-icon {
+    position: absolute;
+    top: var(--space-sm);
+    right: var(--space-sm);
+    width: 1.5rem;
+    height: 1.5rem;
+    color: var(--accent-butter);
+    opacity: 0.5;
+  }
+
+  .wish-icon svg {
+    width: 100%;
+    height: 100%;
+  }
+
+  .wish-text {
+    font-size: 1rem;
+    color: var(--ink);
+    line-height: 1.6;
+    margin: 0 0 var(--space-sm) 0;
+    padding-right: var(--space-xl);
+  }
+
+  .wish-from {
+    font-size: 0.875rem;
+    color: var(--ink-muted);
+    font-style: italic;
+  }
+</style>

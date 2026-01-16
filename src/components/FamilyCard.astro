@@ -1,0 +1,87 @@
+---
+interface Props {
+  role: string;
+  name?: string;
+  cantWaitTo: string;
+  accent?: 'sky' | 'blush' | 'butter' | 'leaf';
+}
+
+const { role, name, cantWaitTo, accent = 'blush' } = Astro.props;
+
+const accentColors = {
+  sky: 'var(--accent-sky-light)',
+  blush: 'var(--accent-blush-light)',
+  butter: 'var(--accent-butter-light)',
+  leaf: 'var(--accent-leaf-light)',
+};
+---
+
+<div class="family-card" style={`--card-accent: ${accentColors[accent]}`}>
+  <div class="card-header">
+    <span class="role-badge">{role}</span>
+    {name && <span class="name">{name}</span>}
+  </div>
+  <p class="cant-wait">
+    <span class="cant-wait-label">Can't wait to:</span>
+    {cantWaitTo}
+  </p>
+</div>
+
+<style>
+  .family-card {
+    background: var(--paper);
+    border-radius: var(--radius-lg);
+    padding: var(--space-lg);
+    box-shadow: var(--paper-shadow);
+    border-top: 4px solid var(--card-accent);
+    transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+  }
+
+  .family-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--paper-shadow-hover);
+  }
+
+  .card-header {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+    margin-bottom: var(--space-md);
+  }
+
+  .role-badge {
+    display: inline-block;
+    background: var(--card-accent);
+    color: var(--ink);
+    font-size: 0.6875rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    padding: var(--space-xs) var(--space-sm);
+    border-radius: var(--radius-full);
+    width: fit-content;
+  }
+
+  .name {
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: var(--ink);
+  }
+
+  .cant-wait {
+    font-size: 0.9375rem;
+    color: var(--ink);
+    margin: 0;
+    line-height: 1.5;
+  }
+
+  .cant-wait-label {
+    display: block;
+    font-size: 0.6875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--ink-muted);
+    margin-bottom: var(--space-xs);
+  }
+</style>

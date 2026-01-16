@@ -1,0 +1,75 @@
+---
+interface Quote {
+  text: string;
+  highlight?: boolean;
+}
+
+interface Props {
+  quotes: Quote[];
+}
+
+const { quotes } = Astro.props;
+---
+
+<div class="quote-ribbon">
+  {quotes.map((quote, index) => (
+    <div class:list={['quote-card', { highlight: quote.highlight }]}>
+      <span class="quote-number" aria-hidden="true">{index + 1}</span>
+      <blockquote class="quote-text">"{quote.text}"</blockquote>
+    </div>
+  ))}
+</div>
+
+<style>
+  .quote-ribbon {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+  }
+
+  .quote-card {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-md);
+    background: var(--bg-alt);
+    border-radius: var(--radius-lg);
+    padding: var(--space-md) var(--space-lg);
+    transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+  }
+
+  .quote-card:hover {
+    transform: translateX(4px);
+  }
+
+  .quote-card.highlight {
+    background: var(--accent-blush-light);
+  }
+
+  .quote-number {
+    flex-shrink: 0;
+    width: 1.5rem;
+    height: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--paper);
+    color: var(--ink-muted);
+    font-size: 0.75rem;
+    font-weight: 700;
+    border-radius: var(--radius-full);
+    box-shadow: 0 1px 3px rgba(74, 63, 53, 0.1);
+  }
+
+  .highlight .quote-number {
+    background: var(--accent-blush);
+    color: var(--paper);
+  }
+
+  .quote-text {
+    font-size: 1rem;
+    font-style: italic;
+    color: var(--ink);
+    line-height: 1.5;
+    margin: 0;
+  }
+</style>
