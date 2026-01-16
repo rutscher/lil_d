@@ -1,0 +1,52 @@
+---
+interface Props {
+  variant?: 'default' | 'playful' | 'cute';
+}
+
+const { variant = 'default' } = Astro.props;
+
+const labels = {
+  default: 'TBD',
+  playful: 'TBD!',
+  cute: 'TBD'
+};
+---
+
+<span class:list={['tbd-badge', `variant-${variant}`]}>
+  {labels[variant]}
+</span>
+
+<style>
+  .tbd-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-xs);
+    background: var(--accent-butter-light);
+    color: var(--ink);
+    font-size: 0.6875rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 0.125rem 0.5rem;
+    border-radius: var(--radius-full);
+    white-space: nowrap;
+  }
+
+  .variant-playful {
+    background: var(--accent-sky-light);
+  }
+
+  .variant-cute {
+    background: var(--accent-blush-light);
+  }
+
+  .variant-cute::before {
+    content: '~';
+    margin-right: -2px;
+  }
+
+  .variant-cute::after {
+    content: '~';
+    margin-left: -2px;
+  }
+</style>

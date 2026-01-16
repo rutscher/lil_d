@@ -1,0 +1,76 @@
+---
+interface Props {
+  id: string;
+  accent?: 'sky' | 'blush' | 'butter' | 'leaf';
+  variant?: 'default' | 'cover';
+}
+
+const { id, accent = 'blush', variant = 'default' } = Astro.props;
+---
+
+<section
+  id={id}
+  class:list={['page-section', `variant-${variant}`]}
+  data-accent={accent}
+>
+  <div class="page-card">
+    <slot />
+  </div>
+</section>
+
+<style>
+  .page-section {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: calc(var(--nav-height) + var(--space-xl)) var(--space-lg) var(--space-xl);
+  }
+
+  .variant-cover {
+    min-height: 100vh;
+    padding-top: 0;
+  }
+
+  .page-card {
+    background: var(--paper);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--paper-shadow);
+    padding: var(--space-2xl);
+    width: 100%;
+    max-width: var(--max-width);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .page-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: var(--chapter-accent, var(--accent-blush));
+    border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+  }
+
+  .variant-cover .page-card {
+    text-align: center;
+    padding: var(--space-3xl) var(--space-2xl);
+  }
+
+  .variant-cover .page-card::before {
+    display: none;
+  }
+
+  @media (max-width: 640px) {
+    .page-card {
+      padding: var(--space-xl) var(--space-lg);
+      border-radius: var(--radius-lg);
+    }
+
+    .variant-cover .page-card {
+      padding: var(--space-2xl) var(--space-lg);
+    }
+  }
+</style>

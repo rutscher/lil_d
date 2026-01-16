@@ -1,0 +1,257 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageSection from '../components/PageSection.astro';
+import ChapterHeader from '../components/ChapterHeader.astro';
+import FactGrid from '../components/FactGrid.astro';
+import QuoteRibbon from '../components/QuoteRibbon.astro';
+import FamilyCard from '../components/FamilyCard.astro';
+import WishList from '../components/WishList.astro';
+import PolaroidGrid from '../components/PolaroidGrid.astro';
+
+// Data for the fact grid
+const knownFacts = [
+  { label: 'Name', value: 'Dorothy Louise Pablo' },
+  { label: 'Weight', value: '8 lb 8 oz' },
+  { label: 'Arrival', value: 'January 15, 2026 at 9:11 PM CT' },
+  { label: 'Status', value: 'Already deeply loved' },
+];
+
+const learningFacts = [
+  { label: 'Favorite Snack', value: "We're taking sweet guesses", isTbd: true },
+  { label: 'Signature Move', value: 'Unclear, but probably adorable', isTbd: true },
+  { label: 'Best Giggle', value: 'Pending deployment', isTbd: true },
+  { label: 'Most Likely to Love', value: 'Naps, snuggles, mischief', isTbd: true },
+  { label: 'Preferred Nickname', value: 'Dotty? Dottie? TBD!', isTbd: true },
+];
+
+// Curated arrival quotes
+const arrivalQuotes = [
+  { text: "You better pack the Bears onesie.", highlight: false },
+  { text: "Baby's born!", highlight: true },
+  { text: "Name is Dorothy Louise Pablo!", highlight: true },
+  { text: "Awwww.", highlight: false },
+  { text: "8 pounds 8 ounces of pure adorable.", highlight: false },
+];
+
+// Family hype team
+const familyMembers = [
+  { role: 'Parents', name: 'Jovi & Claire', cantWaitTo: 'Watch her grow and show her the world', accent: 'blush' as const },
+  { role: 'Grandparents', cantWaitTo: 'Spoil her endlessly with love (and probably snacks)', accent: 'butter' as const },
+  { role: 'Aunts & Uncles', cantWaitTo: 'Be her favorite fun crew and share all the adventures', accent: 'sky' as const },
+  { role: 'Extended Family', cantWaitTo: 'Welcome her with open arms and endless hugs', accent: 'leaf' as const },
+];
+
+// Wishes for Dorothy
+const wishes = [
+  { text: 'May you always know how loved you are, little one.' },
+  { text: 'Wishing you a lifetime of curiosity, kindness, and belly laughs.' },
+  { text: 'May your days be filled with wonder and your nights be peaceful.' },
+  { text: 'Here\'s to all the adventures waiting for you, Dottie!' },
+  { text: 'May you grow up knowing you have the best hype team cheering for you.' },
+];
+
+// Gallery placeholders
+const photos = [
+  { placeholder: true, caption: 'First photo coming soon!' },
+  { placeholder: true, caption: 'Meeting the family' },
+  { placeholder: true, caption: 'Cozy at home' },
+  { placeholder: true, caption: 'Sweet dreams' },
+  { placeholder: true, caption: 'Growing already!' },
+  { placeholder: true, caption: 'More memories to make' },
+];
+---
+
+<BaseLayout>
+  <!-- Cover Section -->
+  <PageSection id="cover" variant="cover" accent="blush">
+    <div class="cover-content">
+      <div class="cover-illustration" aria-hidden="true">
+        <svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="60" cy="60" r="55" fill="var(--accent-blush-light)" stroke="var(--accent-blush)" stroke-width="2"/>
+          <circle cx="60" cy="50" r="20" fill="var(--paper)" stroke="var(--accent-blush)" stroke-width="2"/>
+          <path d="M40 85 Q60 95 80 85" stroke="var(--accent-blush)" stroke-width="2" fill="none" stroke-linecap="round"/>
+          <circle cx="52" cy="47" r="2" fill="var(--ink)"/>
+          <circle cx="68" cy="47" r="2" fill="var(--ink)"/>
+          <path d="M55 55 Q60 58 65 55" stroke="var(--ink)" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+          <!-- Stars -->
+          <path d="M20 25 L22 30 L27 30 L23 33 L25 38 L20 35 L15 38 L17 33 L13 30 L18 30 Z" fill="var(--accent-butter)" opacity="0.8"/>
+          <path d="M95 20 L96.5 24 L100.5 24 L97.5 26.5 L99 30.5 L95 28 L91 30.5 L92.5 26.5 L89.5 24 L93.5 24 Z" fill="var(--accent-sky)" opacity="0.8"/>
+          <path d="M100 75 L101 78 L104 78 L101.5 80 L102.5 83 L100 81 L97.5 83 L98.5 80 L96 78 L99 78 Z" fill="var(--accent-leaf)" opacity="0.8"/>
+        </svg>
+      </div>
+      <h1 class="cover-title">Welcome, Dorothy Louise Pablo</h1>
+      <p class="cover-subtitle">8 lb 8 oz of brand-new everything.</p>
+      <p class="cover-date">Born January 15, 2026 at 9:11 PM CT</p>
+      <a href="#ch-1-mystery" class="cover-cta">
+        Start reading
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <polyline points="6 9 12 15 18 9"/>
+        </svg>
+      </a>
+    </div>
+  </PageSection>
+
+  <!-- Chapter 1: The Mystery Baby -->
+  <PageSection id="ch-1-mystery" accent="sky">
+    <ChapterHeader chapter={1} title="The Mystery Baby" />
+    <p class="chapter-intro">
+      Here's the thing about brand-new humans: they're delightfully mysterious.
+      We know a few things for sure, but the rest? That's the exciting part we get to discover together.
+    </p>
+    <FactGrid known={knownFacts} learning={learningFacts} />
+  </PageSection>
+
+  <!-- Chapter 2: The Day Dorothy Arrived -->
+  <PageSection id="ch-2-arrival" accent="blush">
+    <ChapterHeader chapter={2} title="The Day Dorothy Arrived" />
+    <p class="chapter-intro">
+      It all happened so fast! One moment we were going about our day, and the next—a new star entered the universe.
+      Here are some highlights from the joyful chaos:
+    </p>
+    <QuoteRibbon quotes={arrivalQuotes} />
+    <p class="chapter-outro">
+      And just like that, our family got a little bigger and a whole lot more wonderful.
+      Dorothy Louise Pablo made her grand entrance at 9:11 PM Central Time—the exact same birth minute as her uncle!
+    </p>
+  </PageSection>
+
+  <!-- Chapter 3: The Hype Team -->
+  <PageSection id="ch-3-family" accent="butter">
+    <ChapterHeader chapter={3} title="The Hype Team" />
+    <p class="chapter-intro">
+      Every new arrival deserves a crew that's ready to cheer them on through every milestone,
+      every stumble, and every triumph. Dorothy? She's got quite the lineup.
+    </p>
+    <div class="family-grid">
+      {familyMembers.map((member) => (
+        <FamilyCard {...member} />
+      ))}
+    </div>
+  </PageSection>
+
+  <!-- Chapter 4: Wishes for Dorothy -->
+  <PageSection id="ch-4-wishes" accent="leaf">
+    <ChapterHeader chapter={4} title="Wishes for Dorothy" />
+    <p class="chapter-intro">
+      From all of us who can't wait to watch you grow—here's what we hope for you, little one.
+    </p>
+    <WishList wishes={wishes} />
+  </PageSection>
+
+  <!-- Chapter 5: Growing Gallery -->
+  <PageSection id="ch-5-gallery" accent="sky">
+    <ChapterHeader chapter={5} title="Growing Gallery" />
+    <p class="chapter-intro">
+      This is where the memories will live. Photos from visits, milestones, and all those
+      "I can't believe how much she's grown" moments. Check back soon!
+    </p>
+    <PolaroidGrid photos={photos} />
+  </PageSection>
+</BaseLayout>
+
+<style>
+  /* Cover styles */
+  .cover-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-md);
+  }
+
+  .cover-illustration {
+    width: 150px;
+    height: 150px;
+    margin-bottom: var(--space-md);
+  }
+
+  .cover-illustration svg {
+    width: 100%;
+    height: 100%;
+  }
+
+  .cover-title {
+    font-size: clamp(1.75rem, 5vw, 2.5rem);
+    color: var(--ink);
+    text-align: center;
+    margin: 0;
+  }
+
+  .cover-subtitle {
+    font-size: clamp(1.125rem, 3vw, 1.375rem);
+    color: var(--ink-light);
+    text-align: center;
+    margin: 0;
+    font-weight: 600;
+  }
+
+  .cover-date {
+    font-size: 0.9375rem;
+    color: var(--ink-muted);
+    text-align: center;
+    margin: 0;
+  }
+
+  .cover-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-sm);
+    background: var(--accent-blush);
+    color: var(--paper);
+    font-weight: 700;
+    font-size: 0.9375rem;
+    padding: var(--space-md) var(--space-xl);
+    border-radius: var(--radius-full);
+    text-decoration: none;
+    margin-top: var(--space-lg);
+    transition: all var(--transition-fast);
+  }
+
+  .cover-cta:hover {
+    background: var(--ink);
+    transform: translateY(-2px);
+  }
+
+  .cover-cta svg {
+    width: 1.25rem;
+    height: 1.25rem;
+    animation: bounce 2s ease-in-out infinite;
+  }
+
+  @keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(4px); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .cover-cta svg {
+      animation: none;
+    }
+  }
+
+  /* Chapter intro/outro text */
+  .chapter-intro {
+    font-size: 1.0625rem;
+    color: var(--ink-light);
+    text-align: center;
+    max-width: 36rem;
+    margin: 0 auto var(--space-xl);
+    line-height: 1.7;
+  }
+
+  .chapter-outro {
+    font-size: 1rem;
+    color: var(--ink-light);
+    text-align: center;
+    max-width: 36rem;
+    margin: var(--space-xl) auto 0;
+    line-height: 1.7;
+    font-style: italic;
+  }
+
+  /* Family grid */
+  .family-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--space-lg);
+  }
+</style>
