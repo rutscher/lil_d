@@ -11,17 +11,18 @@ import PolaroidGrid from '../components/PolaroidGrid.astro';
 // Data for the fact grid
 const knownFacts = [
   { label: 'Name', value: 'Dorothy Louise Pablo' },
+  { label: 'Nicknames', value: 'Lil\' Weasel, Dottie Lou' },
   { label: 'Weight', value: '8 lb 8 oz' },
+  { label: 'Length', value: '19.4 inches' },
   { label: 'Arrival', value: 'January 15, 2026 at 9:11 PM CT' },
   { label: 'Status', value: 'Already deeply loved' },
 ];
 
 const learningFacts = [
   { label: 'Favorite Snack', value: "We're taking sweet guesses", isTbd: true },
-  { label: 'Signature Move', value: 'Unclear, but probably adorable', isTbd: true },
+  { label: 'Signature Move', value: 'Both arms straight out (confirmed!)', isTbd: false },
   { label: 'Best Giggle', value: 'Pending deployment', isTbd: true },
   { label: 'Most Likely to Love', value: 'Naps, snuggles, mischief', isTbd: true },
-  { label: 'Preferred Nickname', value: 'Dotty? Dottie? TBD!', isTbd: true },
 ];
 
 // Curated arrival quotes
@@ -111,7 +112,7 @@ const photos = [
     <QuoteRibbon quotes={arrivalQuotes} />
     <p class="chapter-outro">
       And just like that, our family got a little bigger and a whole lot more wonderful.
-      Dorothy Louise Pablo made her grand entrance at 9:11 PM Central Time—the exact same birth minute as her uncle!
+      Dorothy Louise Pablo made her grand entrance at 9:11 PM Central Time—the exact same birth time as her uncle, who was also born at 9:11 PM on 9/11!
     </p>
   </PageSection>
 
