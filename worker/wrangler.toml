@@ -1,7 +1,0 @@
-name = "lil-d"
-main = "src/worker.js"
-compatibility_date = "2024-01-01"
-
-routes = [
-  { pattern = "dorothypablo.com/*", zone_name = "dorothypablo.com" }
-]
